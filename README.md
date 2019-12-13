@@ -2,6 +2,12 @@
 
 This is the document that record every change We've made to our scheme project code to implement this converter. The project is inspired by the scheme project from **CS 61A** at UC Berkeley.
 
+## Get Started
+
+Run ``scheme.py`` to get started. We will update README for any changes we have implemented. Beyond this, ``scheme.py`` perform as a Scheme interpreter.
+
+Run ``(exit)`` to terminate the program.
+
 ## Scheme -> Python
 
 1. **Builtins**
