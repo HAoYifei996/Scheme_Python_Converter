@@ -172,8 +172,7 @@ class BuiltinProcedure(Procedure):
         if self.use_env:
             python_args.append(env)
         try:
-            _ = self.fn(*python_args)
-            if len(python_args) == 2:
+            if len(python_args) > 1:
 
             	x, y = python_args[0], python_args[1]
 
@@ -192,8 +191,16 @@ class BuiltinProcedure(Procedure):
             	elif self.name == 'expt':
             		return 'pow(' + str(x) + ', ' + str(y) + ')'
 
-            	return str(x) + ' ' + self.name + ' ' + str(y)
+            	ret = '('
+            	for i in range(len(python_args)):
+            		ret += str(python_args[i])
+            		if not i == len(python_args) - 1:
+            			ret += ' ' + self.name + ' '
+            	return ret + ')'
+
             else: # hard code every one arg builtins :(
+
+            	_ = self.fn(*python_args)
 
             	x = python_args[0]
 
