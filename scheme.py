@@ -177,19 +177,19 @@ class BuiltinProcedure(Procedure):
             	x, y = python_args[0], python_args[1]
 
             	if self.name == '=':
-            		return str(x) + ' == ' + str(y)
+            		return '(' + str(x) + ' == ' + str(y) + ')'
 
             	elif self.name == 'eq?':
             		if scheme_numberp(x) and scheme_numberp(y) or scheme_symbolp(x) and scheme_symbolp(y):
-            			return str(x) + ' == ' + str(y)
+            			return '(' + str(x) + ' == ' + str(y) + ')'
             		else:
-            			return str(x) + ' is ' + str(y)
+            			return '(' + str(x) + ' is ' + str(y) + ')'
 
             	elif self.name == 'equal?':
             		return 'Sorry, currently unavaiable!'
 
             	elif self.name == 'expt':
-            		return 'pow(' + str(x) + ', ' + str(y) + ')'
+            		return '(' + 'pow(' + str(x) + ', ' + str(y) + ')' + ')'
 
             	ret = '('
             	for i in range(len(python_args)):
@@ -198,31 +198,29 @@ class BuiltinProcedure(Procedure):
             			ret += ' ' + self.name + ' '
             	return ret + ')'
 
-            else: # hard code every one arg builtins :(
+            else: # hard code every one/none arg builtins :(
 
             	_ = self.fn(*python_args)
 
             	x = python_args[0]
 
             	if self.name == 'boolean?':
-            		return str(x) + ' is True or ' + str(x) + ' is False'
+            		return '(' + str(x) + ' is True or ' + str(x) + ' is False' + ')'
 
             	elif self.name == 'not':
-            		return 'not ' + str(x)
+            		return '(' + 'not ' + str(x) + ')'
 
             	elif self.name == 'null?':
-            		return str(x)
+            		return '(' + str(x) + ')'
 
             	elif self.name == 'abs':
-            		return 'abs(' + str(x) + ')'
+            		return '(' + 'abs(' + str(x) + ')' + ')'
 
             	elif self.name == 'even?':
-            		return str(x) + ' % 2 == 0'
+            		return '(' + str(x) + ' % 2 == 0' + ')'
 
             	elif self.name == 'odd?':
-            		return str(x) + ' % 2 == 1'
-
-
+            		return '(' + str(x) + ' % 2 == 1' + ')'
 
         except TypeError:
             raise SchemeError
