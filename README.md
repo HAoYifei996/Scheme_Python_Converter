@@ -1,6 +1,6 @@
 # Scheme-Python Code Converter
 
-This is the document that record every change I've made to my scheme project code to implement this converter. The project is inspired by the scheme project from **CS 61A of UC Berkeley**.
+This is the document that record every change We've made to our scheme project code to implement this converter. The project is inspired by the scheme project from **CS 61A at UC Berkeley**.
 
 ## Scheme -> Python
 
