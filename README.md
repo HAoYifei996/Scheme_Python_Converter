@@ -25,6 +25,7 @@ This is the document that record every change We've made to our scheme project c
 	In ``BuiltinProcedure.apply``, we change the output in ``try``. Instead of ``return self.fn``, we still do the evaluation but return the expression in a different order.
 
 	Builtins we've implemented in our code:
+	
 		* Arithmatic:
 			= + - * / < > <= >= expt abs
 
