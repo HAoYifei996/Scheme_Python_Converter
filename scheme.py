@@ -322,8 +322,15 @@ def do_lambda_form(expressions, env):
     formals = expressions.first
     check_formals(formals)
     # BEGIN PROBLEM 8
-    I = LambdaProcedure(formals, expressions.rest, env)
-    return I
+    str_formals = str(formals)
+    ret_formals = ''
+    for i in range(1, len(str_formals) - 1):
+        if not str_formals[i] == ' ':
+            ret_formals += str_formals[i] + ', '
+    body = expressions.rest
+    lamb = LambdaProcedure(formals, body, env)
+    res = 'lambda ' + ret_formals[:len(ret_formals) - 2] + ': ' + scheme_eval(body.first, env, from_define = True)
+    return res
     # END PROBLEM 8
 
 def do_if_form(expressions, env):

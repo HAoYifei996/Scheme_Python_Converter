@@ -87,4 +87,17 @@ Type in ``(exit)`` to terminate the program.
 
 		To implement this, we give ``scheme_eval`` a new optional argument ``from_define`` to avoid *unknown identifier* exception.
 
+	2. lambda
+
+		A ``lambda`` procedure is just like ``lambda`` in Python. For instance, with input:
+
+		```
+		(lambda (x y)(+ x y))
+		```
+
+		Output should also be a lambda expression:
+
+		```
+		lambda x, y: (x + y)
+		```
 
