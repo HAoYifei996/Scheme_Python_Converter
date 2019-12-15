@@ -10,7 +10,7 @@ from ucb import main, trace
 ##############
 
 
-def scheme_eval(expr, env, _=None): # Optional third argument is ignored
+def scheme_eval(expr, env, _=None, from_define = False): # Optional third argument is ignored
     """Evaluate Scheme expression EXPR in environment ENV.
 
     >>> expr = read_line('(+ 2 2)')
@@ -21,7 +21,10 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
     """
     # Evaluate atoms
     if scheme_symbolp(expr):
-        return env.lookup(expr)
+    	if from_define:
+    		return expr
+    	else:
+        	return env.lookup(expr)
     elif self_evaluating(expr):
         return expr
 
@@ -39,8 +42,7 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         if isinstance(operator, MacroProcedure):
             return scheme_eval(operator.apply_macro(rest, env), env)
         def one_arg_eval(exp):
-            return scheme_eval(exp, env)
-
+            	return scheme_eval(exp, env, from_define = from_define)
         operands = rest.map(one_arg_eval)
         return scheme_apply(operator, operands, env)
         # END PROBLEM 4
@@ -292,9 +294,10 @@ def do_define_form(expressions, env):
         # BEGIN PROBLEM 9
         "*** YOUR CODE HERE ***"
         formals = target.rest
-        lamb_procedure = LambdaProcedure(formals, expressions.rest, env)
+        body = expressions.rest
+        lamb_procedure = LambdaProcedure(formals, body, env)
         env.define(target.first, lamb_procedure)
-        return target.first
+        return 'def ' + str(target.first) + str(formals) + ':\n' + '\treturn ' + str(scheme_eval(body.first, env, from_define = True))
         # END PROBLEM 9
     else:
         bad_target = target.first if isinstance(target, Pair) else target
@@ -608,7 +611,7 @@ def complete_apply(procedure, args, env):
 
 def optimize_tail_calls(original_scheme_eval):
     """Return a properly tail recursive version of an eval function."""
-    def optimized_eval(expr, env, tail=False):
+    def optimized_eval(expr, env, tail=False, from_define=False):
         """Evaluate Scheme expression EXPR in environment ENV. If TAIL,
         return a Thunk containing an expression for further evaluation.
         """
@@ -632,7 +635,7 @@ def optimize_tail_calls(original_scheme_eval):
 ################################################################
 # Uncomment the following line to apply tail call optimization #
 ################################################################
-scheme_eval = optimize_tail_calls(scheme_eval)
+# scheme_eval = optimize_tail_calls(scheme_eval)
 
 
 

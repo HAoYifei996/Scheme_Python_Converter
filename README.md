@@ -72,4 +72,19 @@ Type in ``(exit)`` to terminate the program.
 		tau = (3.14 * 2)
 		```
 
+		Another use of Define is method defining. Say for input:
+
+		```
+		(define (f x) (* x 2))
+		```
+
+		It's defining a method ``f`` which takes in one argument ``x``. The output therefore should be:
+
+		```
+		def f(x):
+			return (x * 2)
+		```
+
+		To implement this, we give ``scheme_eval`` a new optional argument ``from_define`` to avoid *unknown identifier* exception.
+
 
