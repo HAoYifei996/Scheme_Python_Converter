@@ -44,7 +44,7 @@ Type in ``(exit)`` to terminate the program.
 
 	Some of these special forms could be done similarly to the builtins procedure above, but consider we have other methods in ``scheme.py`` to deal with these special procdures, we will handle them in those methods.
 
-	1. Define
+	1. **Define**
 
 		Define in Scheme can be used either name defining or procedure defining. In Python, they corresponds to assignment and method defining.
 
@@ -87,7 +87,7 @@ Type in ``(exit)`` to terminate the program.
 
 		To implement this, we give ``scheme_eval`` a new optional argument ``from_define`` to avoid *unknown identifier* exception.
 
-	2. lambda
+	2. **lambda**
 
 		A ``lambda`` procedure is just like ``lambda`` in Python. For instance, with input:
 
